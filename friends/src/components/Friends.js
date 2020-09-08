@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import axiosWithAuth from "../helpers/axioxWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import Friend from "./Friend";
 
 const axios = axiosWithAuth();
 
-const Friends = props => {
+const Friends = (props) => {
     const [formData, setFormData] = useState({
         name: "",
         age: "",
@@ -18,7 +18,7 @@ const Friends = props => {
             [e.target.name]: e.target.value
         });
     }
-
+    
     const onSubmit = e => {
         e.preventDefault();
         axios.post("http://localhost:5000/api/friends", formData)
@@ -32,6 +32,7 @@ const Friends = props => {
         })
         .catch(err=>{
             console.log(err);
+            console.log(props.setFriends);
         });
     }
 
@@ -62,6 +63,7 @@ const Friends = props => {
         })
         .catch(err=>{
             console.log(err);
+            console.log(props.setFriends);
         });
     }, []);
 
@@ -73,21 +75,24 @@ const Friends = props => {
                     <input 
                         onChange={onChange}
                         value={formData.name}
-                        name="name" type="text"
+                        name="name"
+                        type="text"
                         placeholder="Name"/>
                 </label>
                 <label htmlFor="age">
                     <input
                         onChange={onChange}
                         value={formData.age}
-                        name="age" type="number"
+                        name="age"
+                        type="number"
                         placeholder="Age"/>
                 </label>
                 <label htmlFor="email">
                     <input
                         onChange={onChange}
                         value={formData.email}
-                        name="email" type="email"
+                        name="email"
+                        type="email"
                         placeholder="Email"/>
                 </label>
                 <button>Submit</button>

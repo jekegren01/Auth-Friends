@@ -16,7 +16,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
         //if user is authenticated, render the given component
         if (localStorage.getItem("token")) {
           // user is logged in and renders
-          return <Component {...props} />;
+          return <Component {...props} {...rest} />;
         } else {
           return <Redirect to='/login' />
         }
